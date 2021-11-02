@@ -1,0 +1,76 @@
+/** @format */
+
+/**
+* s> The new CSS Reset - version 1.3.1 (last updated 28.10.2021)
+* https://raw.githubusercontent.com/elad2412/the-new-css-reset/main/css/reset.css?fbclid=IwAR0Uy6xtrLg-zVrMnwi8JIlLFN3LGiHe0hUFJp5XNOAHZ-P9tfn_XhSDqG0
+*/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul {
+    list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+    border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/**
+* s> Custom variables 
+*/
+:root {
+    --bgColor: skyblue;
+    --txtColor: black;
+    --lnkColor: red;
+    --hover: goldenrod;
+}
+
+/**
+* s> General styles 
+*/
+body {
+    width: 100%;
+    height: 100%;
+    background: var(--bgColor);
+    color: var(--txtColor);
+}
+a {
+    color: var(--lnkColor);
+    cursor: pointer;
+}
+a:hover {
+    color: var(--hover);
+}
+form {
+    border: 1px solid red;
+}
+select {
+    background: white;
+}
