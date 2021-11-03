@@ -3,7 +3,7 @@
 
 declare(strict_types=1);
 spl_autoload_register();
-set_include_path(get_include_path().PATH_SEPARATOR.realpath('..'));
+set_include_path(get_include_path().PATH_SEPARATOR.realpath('..')); /* a lil hacky */
 
 use App\Business\AgendaService;
 use App\Business\CalendarService;
