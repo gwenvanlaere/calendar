@@ -89,7 +89,7 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
      * @throws Exception
      */
     public function render(Smarty_Internal_Template $_template)
-    {
+    {        
         // checks if template exists
         if (!$_template->source->exists) {
             $type = $_template->source->isConfig ? 'config' : 'template';
@@ -250,8 +250,8 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
         }
         if (defined('HHVM_VERSION')) {
             eval('?>' . file_get_contents($this->filepath));
-        } else {
-            include $this->filepath;
-        }
-    }
+} else {
+include $this->filepath;
+}
+}
 }

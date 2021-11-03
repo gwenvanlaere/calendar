@@ -21,15 +21,15 @@ variable modifier example of {ldelim}$Name|upper{rdelim}
 
 <b>{$Name|upper}</b>
 
-
+<b>{$agenda}</b>
 An example of a section loop:
 
     {section name=outer
     loop=$FirstName}
         {if $smarty.section.outer.index is odd by 2}
-                {$smarty.section.outer.rownum} . {$FirstName[outer]} {$LastName[outer]}
+                        {$smarty.section.outer.rownum} . {$FirstName[outer]} {$LastName[outer]}
         {else}
-                {$smarty.section.outer.rownum} * {$FirstName[outer]} {$LastName[outer]}
+                        {$smarty.section.outer.rownum} * {$FirstName[outer]} {$LastName[outer]}
         {/if}
         {sectionelse}
         none
@@ -38,28 +38,28 @@ An example of a section loop:
     An example of section looped key values:
 
     {section name=sec1 loop=$contacts}
-            phone: {$contacts[sec1].phone}
-            <br>
+                    phone: {$contacts[sec1].phone}
+                    <br>
 
-                fax: {$contacts[sec1].fax}
-            <br>
+                        fax: {$contacts[sec1].fax}
+                    <br>
 
-                cell: {$contacts[sec1].cell}
-            <br>
+                        cell: {$contacts[sec1].cell}
+                    <br>
     {/section}
     <p>
 
         testing strip tags
         {strip}
-         <table border=0>
-        <tr>
-            <td>
-                <A HREF="{$SCRIPT_NAME}">
-                    <font color="red">This is a test </font>
-                </A>
-            </td>
-        </tr>
-         </table>
+                 <table border=0>
+                <tr>
+                    <td>
+                        <A HREF="{$SCRIPT_NAME}">
+                            <font color="red">This is a test </font>
+                        </A>
+                    </td>
+                </tr>
+                 </table>
     {/strip}
 
 </PRE>

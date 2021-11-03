@@ -31,6 +31,7 @@ $smarty->assign(
         array("phone" => "555-4444", "fax" => "555-3333", "cell" => "760-1234")
     )
 );
+$smarty->assign('agenda', $agenda);
 $smarty->assign("option_values", array("NY", "NE", "KS", "IA", "OK", "TX"));
 $smarty->assign("option_output", array("New York", "Nebraska", "Kansas", "Iowa", "Oklahoma", "Texas"));
 $smarty->assign("option_selected", "NE");

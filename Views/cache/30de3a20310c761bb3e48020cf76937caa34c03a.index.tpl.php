@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.40, created on 2021-11-02 14:56:49
+/* Smarty version 3.1.40, created on 2021-11-03 14:53:31
   from 'C:\xampp\htdocs\gwen\calendar\Views\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.40',
-  'unifunc' => 'content_618143a1d08974_06695958',
+  'unifunc' => 'content_6182945bd44684_88175908',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '2ba247020e2d52ca8b5e397bf77889dcd0dcf7e5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\gwen\\calendar\\Views\\templates\\index.tpl',
-      1 => 1635857495,
+      1 => 1635942826,
       2 => 'file',
     ),
     '82c051c108d6f064f4412311b3d0f87a313cd0a7' => 
@@ -30,7 +30,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   ),
   'cache_lifetime' => 120,
 ),true)) {
-function content_618143a1d08974_06695958 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6182945bd44684_88175908 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,7 @@ function content_618143a1d08974_06695958 (Smarty_Internal_Template $_smarty_tpl)
 
     <b>                Title: -Calendar-!
         </b>
-    The current date and time is 2021-11-02 14:56:49
+    The current date and time is 2021-11-03 14:53:31
 
     The value of global assigned variable $SCRIPT_NAME is /gwen/calendar/Views/index.php
 
@@ -67,32 +67,34 @@ variable modifier example of {$Name|upper}
 <b><?php echo mb_strtoupper($_smarty_tpl->tpl_vars['Name']->value, 'UTF-8');?>
 </b>
 
-
+<b><br />
+<b>Warning</b>:  Array to string conversion in <b>C:\xampp\htdocs\gwen\calendar\Views\templates_c\2ba247020e2d52ca8b5e397bf77889dcd0dcf7e5_0.file.index.tpl.cache.php</b> on line <b>60</b><br />
+Array</b>
 An example of a section loop:
 
-                                                                                                        1 * John Doe
-                                                                                                                    2 * Mary Smith
-                                                                                                                    3 . James Johnson
-                                                                                                                    4 . Henry Case
+                                    1 * John Doe
+                                                2 * Mary Smith
+                                                3 . James Johnson
+                                                4 . Henry Case
                 
     An example of section looped key values:
 
-                                                                                            phone: 1
-                                                                                        <br>
+                        phone: 1
+                    <br>
 
-                                                                                            fax: 2
-                                                                                        <br>
+                        fax: 2
+                    <br>
 
-                                                                                            cell: 3
-                                                                                        <br>
-                                                                                            phone: 555-4444
-                                                                                        <br>
+                        cell: 3
+                    <br>
+                        phone: 555-4444
+                    <br>
 
-                                                                                            fax: 555-3333
-                                                                                        <br>
+                        fax: 555-3333
+                    <br>
 
-                                                                                            cell: 760-1234
-                                                                                        <br>
+                        cell: 760-1234
+                    <br>
         <p>
 
         testing strip tags
@@ -132,8 +134,8 @@ This is an example of the html_select_date function:
 </select>
 <select name="Date_Day">
 <option value="1">01</option>
-<option value="2" selected="selected">02</option>
-<option value="3">03</option>
+<option value="2">02</option>
+<option value="3" selected="selected">03</option>
 <option value="4">04</option>
 <option value="5">05</option>
 <option value="6">06</option>
@@ -247,10 +249,10 @@ This is an example of the html_select_time function:
 <option value="50">50</option>
 <option value="51">51</option>
 <option value="52">52</option>
-<option value="53">53</option>
+<option value="53" selected="selected">53</option>
 <option value="54">54</option>
 <option value="55">55</option>
-<option value="56" selected="selected">56</option>
+<option value="56">56</option>
 <option value="57">57</option>
 <option value="58">58</option>
 <option value="59">59</option>
@@ -286,7 +288,7 @@ This is an example of the html_select_time function:
 <option value="28">28</option>
 <option value="29">29</option>
 <option value="30">30</option>
-<option value="31">31</option>
+<option value="31" selected="selected">31</option>
 <option value="32">32</option>
 <option value="33">33</option>
 <option value="34">34</option>
@@ -304,7 +306,7 @@ This is an example of the html_select_time function:
 <option value="46">46</option>
 <option value="47">47</option>
 <option value="48">48</option>
-<option value="49" selected="selected">49</option>
+<option value="49">49</option>
 <option value="50">50</option>
 <option value="51">51</option>
 <option value="52">52</option>
