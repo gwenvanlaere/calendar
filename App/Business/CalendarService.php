@@ -5,24 +5,19 @@ declare(strict_types=1);
 namespace App\Business;
 
 use App\Entities\Calendar;
-use Exceptions\InvalidYearException;
-use Exceptions\LanguageNotSupported;
+use App\Exceptions\InvalidYearException;
 
 class CalendarService
 {
-    public function makeCalendar(int $year = null, string $language = null) : Calendar
+    public function makeCalendar(int $year = null) : Calendar
     {        
         if ($year) {
             if ($year > 3000 || $year < 1000) {
                 throw new InvalidYearException();
             }
         }
-        if ($language) {
-            if (!in_array($language, Calendar::$languages)) {
-                throw new LanguageNotSupported();            
-            }
-        }
-        $calendar = new Calendar($year, $language);        
+        
+        $calendar = new Calendar($year);        
         return $calendar;
     }
 }

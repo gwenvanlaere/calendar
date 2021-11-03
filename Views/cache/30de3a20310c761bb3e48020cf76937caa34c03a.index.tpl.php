@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.40, created on 2021-11-03 14:53:31
+/* Smarty version 3.1.40, created on 2021-11-03 16:13:09
   from 'C:\xampp\htdocs\gwen\calendar\Views\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.40',
-  'unifunc' => 'content_6182945bd44684_88175908',
+  'unifunc' => 'content_6182a705301df5_07179316',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '2ba247020e2d52ca8b5e397bf77889dcd0dcf7e5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\gwen\\calendar\\Views\\templates\\index.tpl',
-      1 => 1635942826,
+      1 => 1635952220,
       2 => 'file',
     ),
     '82c051c108d6f064f4412311b3d0f87a313cd0a7' => 
@@ -30,7 +30,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   ),
   'cache_lifetime' => 120,
 ),true)) {
-function content_6182945bd44684_88175908 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6182a705301df5_07179316 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +53,7 @@ function content_6182945bd44684_88175908 (Smarty_Internal_Template $_smarty_tpl)
 
     <b>                Title: -Calendar-!
         </b>
-    The current date and time is 2021-11-03 14:53:31
-
-    The value of global assigned variable $SCRIPT_NAME is /gwen/calendar/Views/index.php
+    The current date and time is 2021-11-03 16:13:09    
 
     Example of accessing server environment variable SERVER_NAME: localhost
 
@@ -67,34 +65,31 @@ variable modifier example of {$Name|upper}
 <b><?php echo mb_strtoupper($_smarty_tpl->tpl_vars['Name']->value, 'UTF-8');?>
 </b>
 
-<b><br />
-<b>Warning</b>:  Array to string conversion in <b>C:\xampp\htdocs\gwen\calendar\Views\templates_c\2ba247020e2d52ca8b5e397bf77889dcd0dcf7e5_0.file.index.tpl.cache.php</b> on line <b>60</b><br />
-Array</b>
 An example of a section loop:
 
-                                    1 * John Doe
-                                                2 * Mary Smith
-                                                3 . James Johnson
-                                                4 . Henry Case
+                                                                                                    1 * John Doe
+                                                                                                                2 * Mary Smith
+                                                                                                                3 . James Johnson
+                                                                                                                4 . Henry Case
                 
     An example of section looped key values:
 
-                        phone: 1
-                    <br>
+                                                                                        phone: 1
+                                                                                    <br>
 
-                        fax: 2
-                    <br>
+                                                                                        fax: 2
+                                                                                    <br>
 
-                        cell: 3
-                    <br>
-                        phone: 555-4444
-                    <br>
+                                                                                        cell: 3
+                                                                                    <br>
+                                                                                        phone: 555-4444
+                                                                                    <br>
 
-                        fax: 555-3333
-                    <br>
+                                                                                        fax: 555-3333
+                                                                                    <br>
 
-                        cell: 760-1234
-                    <br>
+                                                                                        cell: 760-1234
+                                                                                    <br>
         <p>
 
         testing strip tags
@@ -104,7 +99,8 @@ An example of a section loop:
 
 This is an example of the html_select_date function:
 
-<form>
+<p>SELECTED: 2019</p>
+<form action='/gwen/calendar/Views/index.php' method='post' id="selectYear">
     <select name="Date_Year">
 <option value="2016">2016</option>
 <option value="2017">2017</option>
@@ -168,8 +164,7 @@ This is an example of the html_select_date function:
 </form>
 
 This is an example of the html_select_time function:
-
-<form>
+<form action='/' method='post'>
     <select name="Time_Hour">
 <option value="00">00</option>
 <option value="01">01</option>
@@ -185,9 +180,9 @@ This is an example of the html_select_time function:
 <option value="11">11</option>
 <option value="12">12</option>
 <option value="13">13</option>
-<option value="14" selected="selected">14</option>
+<option value="14">14</option>
 <option value="15">15</option>
-<option value="16">16</option>
+<option value="16" selected="selected">16</option>
 <option value="17">17</option>
 <option value="18">18</option>
 <option value="19">19</option>
@@ -209,7 +204,7 @@ This is an example of the html_select_time function:
 <option value="10">10</option>
 <option value="11">11</option>
 <option value="12">12</option>
-<option value="13">13</option>
+<option value="13" selected="selected">13</option>
 <option value="14">14</option>
 <option value="15">15</option>
 <option value="16">16</option>
@@ -249,7 +244,7 @@ This is an example of the html_select_time function:
 <option value="50">50</option>
 <option value="51">51</option>
 <option value="52">52</option>
-<option value="53" selected="selected">53</option>
+<option value="53">53</option>
 <option value="54">54</option>
 <option value="55">55</option>
 <option value="56">56</option>
@@ -266,7 +261,7 @@ This is an example of the html_select_time function:
 <option value="06">06</option>
 <option value="07">07</option>
 <option value="08">08</option>
-<option value="09">09</option>
+<option value="09" selected="selected">09</option>
 <option value="10">10</option>
 <option value="11">11</option>
 <option value="12">12</option>
@@ -288,7 +283,7 @@ This is an example of the html_select_time function:
 <option value="28">28</option>
 <option value="29">29</option>
 <option value="30">30</option>
-<option value="31" selected="selected">31</option>
+<option value="31">31</option>
 <option value="32">32</option>
 <option value="33">33</option>
 <option value="34">34</option>

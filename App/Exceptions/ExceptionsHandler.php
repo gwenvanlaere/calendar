@@ -3,7 +3,7 @@
 
 declare(strict_types = 1);
 
-namespace Exceptions;
+namespace App\Exceptions;
 use \Exception;
 
 class ExceptionsHandler {
@@ -13,7 +13,8 @@ class ExceptionsHandler {
     public static $messages = array(
         'Exception' => 'Er ging iets mis... Probeer het later opnieuw',
         'InvalidYearException' => 'Invalid year given',        
-        'LanguageNotSupported' => 'Language not supported',        
+        'LanguageNotSupportedException' => 'Language not supported',        
+        'CannotRemoveNoteException' => 'Could not remove this note',        
         'UnknownException' => 'Er is een onbekende fout opgetreden!',
     );
     

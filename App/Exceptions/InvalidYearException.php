@@ -3,7 +3,7 @@
 
 declare(strict_types = 1);
 
-namespace Exceptions;
+namespace App\Exceptions;
 use \Exception;
 
 class InvalidYearException extends Exception {

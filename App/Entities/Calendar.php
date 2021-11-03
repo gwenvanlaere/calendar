@@ -34,13 +34,13 @@ class Calendar
     private int $year;
     private array $calendar;
     
-    public function __construct(int $year = null, string $language = null)
+    public function __construct(int $year = null)
     {
-        $language = $language ?? 'en';
+        //$language = $language ?? 'en';
         $year = $year ?? intval(date("Y"));        
         
         $this->year = $year;        
-        $this->language = $language;
+        //$this->language = $language;
         $this->init();        
     }
     
@@ -50,7 +50,7 @@ class Calendar
         $calendar = $this->makeCalendarMonths();       
         $this->calendar = $calendar;
     }
-    private function makeCalendarMonths()
+    /*private function makeCalendarMonths()
     {
         $lang = $this->language;
         $calendarMonths = [];
@@ -58,8 +58,16 @@ class Calendar
             $calendarMonths += [$name[$lang] => $this->makeCalendarDays($month)];
         }
         return $calendarMonths;       
+    }*/
+    private function makeCalendarMonths()
+    {        
+        $calendarMonths = [];
+        foreach(self::$months as $month => $name) {
+            $calendarMonths += [$month => $this->makeCalendarDays($month)];
+        }
+        return $calendarMonths;       
     }  
-    private function makeCalendarDays(int $month) : array
+    /*private function makeCalendarDays(int $month) : array
     {
         $lang = $this->language;
         $daysInMonth = $this->getDaysInMonth($month);
@@ -71,20 +79,28 @@ class Calendar
             $start++;
         }
         return $calendarDays;
+    }*/ 
+    private function makeCalendarDays(int $month) : array
+    {        
+        $daysInMonth = $this->getDaysInMonth($month);
+        $start = $this->getFirstDayOfMonth($month);        
+        $calendarDays = [];        
+        for ($i=1; $i <= $daysInMonth; $i++) {
+            $start = $start > 7 ? 1 : $start;           
+            $calendarDays += [$i => $start];
+            $start++;
+        }
+        return $calendarDays;
     }    
     private function getFirstDayOfMonth(int $month) : int
     { 
         $timestamp = strtotime(strval($this->year) . '-'. strval($month) . '-01');
         $day = intval(date('w', $timestamp));
-        return $day === 0 ? 7 : $day;        
+        return $day === 0 ? 7 : $day; /* sunday = 0 */
     }
   
 
-    /* getters */
-    public function getLanguage() : string
-    {
-        return $this->language;
-    }
+    /* getters */    
     public function getYear() : int
     {
         return $this->year;

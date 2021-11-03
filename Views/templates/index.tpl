@@ -9,9 +9,7 @@
         Title: {#title#|capitalize}
         {if #bold#}</b>{/if}
 
-    The current date and time is {$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}
-
-    The value of global assigned variable $SCRIPT_NAME is {$SCRIPT_NAME}
+    The current date and time is {$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}    
 
     Example of accessing server environment variable SERVER_NAME: {$smarty.server.SERVER_NAME}
 
@@ -21,15 +19,14 @@ variable modifier example of {ldelim}$Name|upper{rdelim}
 
 <b>{$Name|upper}</b>
 
-<b>{$agenda}</b>
 An example of a section loop:
 
     {section name=outer
     loop=$FirstName}
         {if $smarty.section.outer.index is odd by 2}
-                        {$smarty.section.outer.rownum} . {$FirstName[outer]} {$LastName[outer]}
+                                                                                        {$smarty.section.outer.rownum} . {$FirstName[outer]} {$LastName[outer]}
         {else}
-                        {$smarty.section.outer.rownum} * {$FirstName[outer]} {$LastName[outer]}
+                                                                                        {$smarty.section.outer.rownum} * {$FirstName[outer]} {$LastName[outer]}
         {/if}
         {sectionelse}
         none
@@ -38,41 +35,41 @@ An example of a section loop:
     An example of section looped key values:
 
     {section name=sec1 loop=$contacts}
-                    phone: {$contacts[sec1].phone}
-                    <br>
+                                                                                    phone: {$contacts[sec1].phone}
+                                                                                    <br>
 
-                        fax: {$contacts[sec1].fax}
-                    <br>
+                                                                                        fax: {$contacts[sec1].fax}
+                                                                                    <br>
 
-                        cell: {$contacts[sec1].cell}
-                    <br>
+                                                                                        cell: {$contacts[sec1].cell}
+                                                                                    <br>
     {/section}
     <p>
 
         testing strip tags
         {strip}
-                 <table border=0>
-                <tr>
-                    <td>
-                        <A HREF="{$SCRIPT_NAME}">
-                            <font color="red">This is a test </font>
-                        </A>
-                    </td>
-                </tr>
-                 </table>
+                                                                                 <table border=0>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <A HREF="{$SCRIPT_NAME}">
+                                                                                            <font color="red">This is a test </font>
+                                                                                        </A>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                 </table>
     {/strip}
 
 </PRE>
 
 This is an example of the html_select_date function:
 
-<form>
+<p>SELECTED: {$selected_year}</p>
+<form action='{$SCRIPT_NAME}' method='post' id="selectYear">
     {html_select_date start_year='-5' end_year='+5' field_order=YMD}
 </form>
 
 This is an example of the html_select_time function:
-
-<form>
+<form action='/' method='post'>
     {html_select_time field_separator=':'}
 </form>
 

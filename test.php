@@ -9,47 +9,31 @@ use App\Business\AgendaService;
 use App\Business\CalendarService;
 use App\Exceptions\ExceptionsHandler;
 
-/*********** SESSION **********/
-if (session_status() == PHP_SESSION_NONE) { 
-    session_start();
-}
-//session_destroy();
-
-/*********** VARIABLES **********/
 $errors = [];
 $agenda;
 $calSrv = new CalendarService();
 $agdSrv = new AgendaService();
 
-/*********** AGENDA **********/
+
 if (isset($_SESSION['agenda']) && !isset($_POST['Date_Year'])) {
-    $agenda = unserialize($_SESSION['agenda'], ['Agenda']);
-    echo '<pre>';
-    print_r('in session !!!!!!!!!!');
-    echo '</pre>';    
-} else {    
+    $agenda = unserialize($_SESSION['agenda'], ['Agenda']); 
+} else {
     $year = isset($_POST['Date_Year']) ? $_POST['Date_Year'] : date('Y');    
     try {    
         $calendar = $calSrv->makeCalendar(intval($year));    
         $agenda = $agdSrv->makeAgenda($calendar, 'nl');
+        $_SESSION['agenda'] = serialize($agenda); 
     } catch(Exception $ex) {
         $exHandler = new ExceptionsHandler($ex);              
         $errors = $exHandler::$messages[$exHandler->getName()];
     }
 }
 
-try {
-    //$agdSrv->addNote($agenda, 3, 11, 'where are you hiding my love??');
-    //$agdSrv->addNote($agenda, 3, 11, 'and now for something completely different');
-    $agdSrv->removeNote($agenda, 3, 11, '1635966426');
-} catch(Exception $ex) {
-    $exHandler = new ExceptionsHandler($ex);              
-    $errors = $exHandler::$messages[$exHandler->getName()];
-}
-$_SESSION['agenda'] = serialize($agenda);
+//$agdSrv->addNote($agenda, 3, 11, 'trap het af');
+//$agenda->addNote(3, 11, 'trap het af');
 
 echo '<pre>';
-print_r($errors);
+print_r($agenda->showAgenda());
 echo '</pre>';
 
 //TODO selected year = <option selected></option>

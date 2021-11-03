@@ -10,7 +10,7 @@ include('../sessiondata.php');
 $smarty = new Smarty;
 //$smarty->force_compile = true;
 $smarty->debugging = true;
-$smarty->caching = true;
+// $smarty->caching = true;
 $smarty->cache_lifetime = 120;
 $smarty->assign("Name", "Gwen Van Laere", true);
 $smarty->assign("FirstName", array("John", "Mary", "James", "Henry"));
@@ -31,7 +31,14 @@ $smarty->assign(
         array("phone" => "555-4444", "fax" => "555-3333", "cell" => "760-1234")
     )
 );
+
+echo '<pre>';
+print_r($agenda->getLanguage());
+echo '</pre>';
+$smarty->assign('errors', $errors);
 $smarty->assign('agenda', $agenda);
+$smarty->assign('selected_year',$agenda->getYear());
+
 $smarty->assign("option_values", array("NY", "NE", "KS", "IA", "OK", "TX"));
 $smarty->assign("option_output", array("New York", "Nebraska", "Kansas", "Iowa", "Oklahoma", "Texas"));
 $smarty->assign("option_selected", "NE");

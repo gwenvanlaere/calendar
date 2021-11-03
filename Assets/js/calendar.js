@@ -1,4 +1,6 @@
 /** @format */
 
 'use strict';
-console.log('it works');
+$("[name='Date_Year']").change(function () {
+    this.closest('form').submit();
+});
