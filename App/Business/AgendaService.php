@@ -46,10 +46,7 @@ class AgendaService
     {        
         $year = strval($agenda->getYear());
         $agenda->removeNote($day, $month, $timestamp);
-        $content = $agenda->getContent();
-        echo '<pre>';
-        print_r($content);
-        echo '</pre>';
+        $content = $agenda->getContent();        
         
         $storSrv = new StorageService();
         $file = $storSrv->makeFile($year, $content);        
