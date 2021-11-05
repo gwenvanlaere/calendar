@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.40, created on 2021-11-03 16:15:11
+/* Smarty version 3.1.40, created on 2021-11-05 18:28:45
   from 'C:\xampp\htdocs\gwen\calendar\Views\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.40',
-  'unifunc' => 'content_6182a77f802ce8_62133037',
+  'unifunc' => 'content_618569cdd6a3e5_57203058',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2ba247020e2d52ca8b5e397bf77889dcd0dcf7e5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\gwen\\calendar\\Views\\templates\\index.tpl',
-      1 => 1635952220,
+      1 => 1636133321,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6182a77f802ce8_62133037 (Smarty_Internal_Template $_smarty_tpl) {
+function content_618569cdd6a3e5_57203058 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\gwen\\calendar\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.capitalize.php','function'=>'smarty_modifier_capitalize',),1=>array('file'=>'C:\\xampp\\htdocs\\gwen\\calendar\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),2=>array('file'=>'C:\\xampp\\htdocs\\gwen\\calendar\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_select_date.php','function'=>'smarty_function_html_select_date',),3=>array('file'=>'C:\\xampp\\htdocs\\gwen\\calendar\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_select_time.php','function'=>'smarty_function_html_select_time',),4=>array('file'=>'C:\\xampp\\htdocs\\gwen\\calendar\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
@@ -62,12 +62,12 @@ for ($__section_outer_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_
 $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum'] = $__section_outer_0_iteration;
 ?>
         <?php if ((1 & (isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index'] : null) / 2)) {?>
-                                                                                        <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum'] : null);?>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum'] : null);?>
  . <?php echo $_smarty_tpl->tpl_vars['FirstName']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index'] : null)];?>
  <?php echo $_smarty_tpl->tpl_vars['LastName']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index'] : null)];?>
 
         <?php } else { ?>
-                                                                                        <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum'] : null);?>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['rownum'] : null);?>
  * <?php echo $_smarty_tpl->tpl_vars['FirstName']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index'] : null)];?>
  <?php echo $_smarty_tpl->tpl_vars['LastName']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_outer']->value['index'] : null)];?>
 
@@ -88,17 +88,15 @@ $_smarty_tpl->tpl_vars['__smarty_section_sec1'] = new Smarty_Variable(array());
 if ($__section_sec1_1_total !== 0) {
 for ($__section_sec1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index'] = 0; $__section_sec1_1_iteration <= $__section_sec1_1_total; $__section_sec1_1_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index']++){
 ?>
-                                                                                    phone: <?php echo $_smarty_tpl->tpl_vars['contacts']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index'] : null)]['phone'];?>
+                phone: <?php echo $_smarty_tpl->tpl_vars['contacts']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index'] : null)]['phone'];?>
 
-                                                                                    <br>
+                <br>
+                    fax: <?php echo $_smarty_tpl->tpl_vars['contacts']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index'] : null)]['fax'];?>
 
-                                                                                        fax: <?php echo $_smarty_tpl->tpl_vars['contacts']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index'] : null)]['fax'];?>
+                <br>
+                    cell: <?php echo $_smarty_tpl->tpl_vars['contacts']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index'] : null)]['cell'];?>
 
-                                                                                    <br>
-
-                                                                                        cell: <?php echo $_smarty_tpl->tpl_vars['contacts']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_sec1']->value['index'] : null)]['cell'];?>
-
-                                                                                    <br>
+                <br>
     <?php
 }
 }
@@ -117,7 +115,7 @@ This is an example of the html_select_date function:
 </p>
 <form action='<?php echo $_smarty_tpl->tpl_vars['SCRIPT_NAME']->value;?>
 ' method='post' id="selectYear">
-    <?php echo smarty_function_html_select_date(array('start_year'=>'-5','end_year'=>'+5','field_order'=>'YMD'),$_smarty_tpl);?>
+    <?php echo smarty_function_html_select_date(array('start_year'=>'-5','end_year'=>'+5','field_order'=>'YMD','display_days'=>false,'display_months'=>false),$_smarty_tpl);?>
 
 </form>
 
@@ -135,6 +133,77 @@ This is an example of the html_options function:
 
     </select>
 </form>
+<article class="agenda">
+    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['agenda']->value, 'month');
+$_smarty_tpl->tpl_vars['month']->iteration = 0;
+$_smarty_tpl->tpl_vars['month']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['month']->key => $_smarty_tpl->tpl_vars['month']->value) {
+$_smarty_tpl->tpl_vars['month']->do_else = false;
+$_smarty_tpl->tpl_vars['month']->iteration++;
+$__foreach_month_0_saved = $_smarty_tpl->tpl_vars['month'];
+?>
+        <section class="month">
+            <h2><label for="month-<?php echo $_smarty_tpl->tpl_vars['month']->iteration;?>
+" style='font-weight:bold;'> <?php echo $_smarty_tpl->tpl_vars['month']->key;?>
+ </label></h2>
+            <input type="radio" id="month-<?php echo $_smarty_tpl->tpl_vars['month']->iteration;?>
+" name="month">
+            <ul class="monthList">
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['month']->value, 'day');
+$_smarty_tpl->tpl_vars['day']->iteration = 0;
+$_smarty_tpl->tpl_vars['day']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['day']->key => $_smarty_tpl->tpl_vars['day']->value) {
+$_smarty_tpl->tpl_vars['day']->do_else = false;
+$_smarty_tpl->tpl_vars['day']->iteration++;
+$__foreach_day_1_saved = $_smarty_tpl->tpl_vars['day'];
+?>
+                    <li class='day' data-month='<?php echo $_smarty_tpl->tpl_vars['month']->iteration;?>
+' data-day='<?php echo $_smarty_tpl->tpl_vars['day']->iteration;?>
+'>
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['day']->value, 'notes');
+$_smarty_tpl->tpl_vars['notes']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['notes']->key => $_smarty_tpl->tpl_vars['notes']->value) {
+$_smarty_tpl->tpl_vars['notes']->do_else = false;
+$__foreach_notes_2_saved = $_smarty_tpl->tpl_vars['notes'];
+?>
+                            <?php echo $_smarty_tpl->tpl_vars['day']->key;?>
+ +++++ <?php echo $_smarty_tpl->tpl_vars['notes']->key;?>
+
+                            <ul>
+                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['notes']->value, 'note');
+$_smarty_tpl->tpl_vars['note']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['note']->key => $_smarty_tpl->tpl_vars['note']->value) {
+$_smarty_tpl->tpl_vars['note']->do_else = false;
+$__foreach_note_3_saved = $_smarty_tpl->tpl_vars['note'];
+?>
+                                    <li><?php echo $_smarty_tpl->tpl_vars['note']->key;?>
+ => <?php echo $_smarty_tpl->tpl_vars['note']->value;?>
+</li>
+                                <?php
+$_smarty_tpl->tpl_vars['note'] = $__foreach_note_3_saved;
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                            <?php
+$_smarty_tpl->tpl_vars['notes'] = $__foreach_notes_2_saved;
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                        </ul>
+                    </li>
+                <?php
+$_smarty_tpl->tpl_vars['day'] = $__foreach_day_1_saved;
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+            </ul>
+        </section>
+    <?php
+$_smarty_tpl->tpl_vars['month'] = $__foreach_month_0_saved;
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+</article>
 
 <?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

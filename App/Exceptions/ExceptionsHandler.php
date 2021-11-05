@@ -15,6 +15,8 @@ class ExceptionsHandler {
         'InvalidYearException' => 'Invalid year given',        
         'LanguageNotSupportedException' => 'Language not supported',        
         'CannotRemoveNoteException' => 'Could not remove this note',        
+        'NoteDoesNotExistException' => 'Note not found',        
+        'NoNotesFoundForThisDayException' => 'No notes found for this day',       
         'UnknownException' => 'Er is een onbekende fout opgetreden!',
     );
     

@@ -32,11 +32,10 @@ $smarty->assign(
     )
 );
 
-echo '<pre>';
-print_r($agenda->getLanguage());
-echo '</pre>';
 $smarty->assign('errors', $errors);
-$smarty->assign('agenda', $agenda);
+$smarty->assign('daysInWeek', 8);
+$smarty->assign('firstDay', $firstDay);
+$smarty->assign('agenda', $agenda->showAgenda(true));
 $smarty->assign('selected_year',$agenda->getYear());
 
 $smarty->assign("option_values", array("NY", "NE", "KS", "IA", "OK", "TX"));

@@ -1,6 +1,4 @@
 /** @format */
 
 'use strict';
-$("[name='Date_Year']").change(function () {
-    this.closest('form').submit();
-});
+$('[name="Date_Year"] > [value]').click((e) => e.target.closest('form').submit());

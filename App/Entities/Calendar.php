@@ -49,16 +49,7 @@ class Calendar
     {  
         $calendar = $this->makeCalendarMonths();       
         $this->calendar = $calendar;
-    }
-    /*private function makeCalendarMonths()
-    {
-        $lang = $this->language;
-        $calendarMonths = [];
-        foreach(self::$months as $month => $name) {
-            $calendarMonths += [$name[$lang] => $this->makeCalendarDays($month)];
-        }
-        return $calendarMonths;       
-    }*/
+    }    
     private function makeCalendarMonths()
     {        
         $calendarMonths = [];
@@ -66,20 +57,7 @@ class Calendar
             $calendarMonths += [$month => $this->makeCalendarDays($month)];
         }
         return $calendarMonths;       
-    }  
-    /*private function makeCalendarDays(int $month) : array
-    {
-        $lang = $this->language;
-        $daysInMonth = $this->getDaysInMonth($month);
-        $start = $this->getFirstDayOfMonth($month);        
-        $calendarDays = [];        
-        for ($i=1; $i <= $daysInMonth; $i++) {
-            $start = $start > 7 ? 1 : $start;           
-            $calendarDays += [$i => self::$days[$start][$lang]];
-            $start++;
-        }
-        return $calendarDays;
-    }*/ 
+    }      
     private function makeCalendarDays(int $month) : array
     {        
         $daysInMonth = $this->getDaysInMonth($month);
@@ -92,13 +70,32 @@ class Calendar
         }
         return $calendarDays;
     }    
-    private function getFirstDayOfMonth(int $month) : int
+    public function getFirstDayOfMonth(int $month) : int
     { 
         $timestamp = strtotime(strval($this->year) . '-'. strval($month) . '-01');
         $day = intval(date('w', $timestamp));
         return $day === 0 ? 7 : $day; /* sunday = 0 */
     }
-  
+    public function getLastDayOfMonth(int $month) : int 
+    {
+        $timestamp = strtotime(strval($this->year) . '-'. strval($month) . '-' . strval($this->getDaysInMonth($month)));
+        $day = intval(date('w', $timestamp));
+        return $day === 0 ? 7 : $day; /* sunday = 0 */
+    }
+    public function getDecemberOfLastYear() : array 
+    {
+        $this->year--;
+        $month = $this->makeCalendarDays(12);
+        $this->year++;
+        return $month;
+    }
+    public function getJanuaryOfNextYear() : array 
+    {
+        $this->year++;
+        $month = $this->makeCalendarDays(1);
+        $this->year--;
+        return $month;
+    }
 
     /* getters */    
     public function getYear() : int

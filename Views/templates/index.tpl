@@ -24,9 +24,9 @@ An example of a section loop:
     {section name=outer
     loop=$FirstName}
         {if $smarty.section.outer.index is odd by 2}
-                                                                                        {$smarty.section.outer.rownum} . {$FirstName[outer]} {$LastName[outer]}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {$smarty.section.outer.rownum} . {$FirstName[outer]} {$LastName[outer]}
         {else}
-                                                                                        {$smarty.section.outer.rownum} * {$FirstName[outer]} {$LastName[outer]}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {$smarty.section.outer.rownum} * {$FirstName[outer]} {$LastName[outer]}
         {/if}
         {sectionelse}
         none
@@ -35,28 +35,26 @@ An example of a section loop:
     An example of section looped key values:
 
     {section name=sec1 loop=$contacts}
-                                                                                    phone: {$contacts[sec1].phone}
-                                                                                    <br>
-
-                                                                                        fax: {$contacts[sec1].fax}
-                                                                                    <br>
-
-                                                                                        cell: {$contacts[sec1].cell}
-                                                                                    <br>
+                phone: {$contacts[sec1].phone}
+                <br>
+                    fax: {$contacts[sec1].fax}
+                <br>
+                    cell: {$contacts[sec1].cell}
+                <br>
     {/section}
     <p>
 
         testing strip tags
         {strip}
-                                                                                 <table border=0>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <A HREF="{$SCRIPT_NAME}">
-                                                                                            <font color="red">This is a test </font>
-                                                                                        </A>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                 </table>
+             <table border=0>
+            <tr>
+                <td>
+                    <A HREF="{$SCRIPT_NAME}">
+                        <font color="red">This is a test </font>
+                    </A>
+                </td>
+            </tr>
+             </table>
     {/strip}
 
 </PRE>
@@ -65,7 +63,7 @@ This is an example of the html_select_date function:
 
 <p>SELECTED: {$selected_year}</p>
 <form action='{$SCRIPT_NAME}' method='post' id="selectYear">
-    {html_select_date start_year='-5' end_year='+5' field_order=YMD}
+    {html_select_date start_year='-5' end_year='+5' field_order=YMD display_days=false display_months=false}
 </form>
 
 This is an example of the html_select_time function:
@@ -80,5 +78,27 @@ This is an example of the html_options function:
         {html_options values=$option_values selected=$option_selected output=$option_output}
     </select>
 </form>
+<article class="agenda">
+    {foreach $agenda as $month}
+        <section class="month">
+            <h2><label for="month-{$month@iteration}" style='font-weight:bold;'> {$month@key} </label></h2>
+            <input type="radio" id="month-{$month@iteration}" name="month">
+            <ul class="monthList">
+                {foreach $month as $day}
+                    <li class='day' data-month='{$month@iteration}' data-day='{$day@iteration}'>
+                        {foreach $day as $notes}
+                            {$day@key} +++++ {$notes@key}
+                            <ul>
+                                {foreach $notes as $note}
+                                    <li>{$note@key} => {$note}</li>
+                                {/foreach}
+                            {/foreach}
+                        </ul>
+                    </li>
+                {/foreach}
+            </ul>
+        </section>
+    {/foreach}
+</article>
 
 {include file="footer.tpl"}
