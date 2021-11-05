@@ -19,15 +19,23 @@ class AgendaService
         }      
         $agenda = new Agenda($calendar, $language);
         $content = $agenda->getContent();
-        $year = strval($calendar->getYear());
+        $year = $calendar->getYear();
         
         $storSrv = new StorageService();
-        $file = $storSrv->findFile($year);        
+        
+        //o> current year       
+        $file = $storSrv->findFile(strval($year));        
         if (!$file) {
-            $file = $storSrv->makeFile($year, $content);
-        }        
+            $file = $storSrv->makeFile(strval($year), $content);
+        }
         $agenda->setContent($file);
-                    
+        
+        //o> check for bounding years
+        $nextYear = $storSrv->findFile(strval($year + 1));
+        $lastYear = $storSrv->findFile(strval($year - 1)); 
+        $nextYear &&  $agenda->setNextYear($nextYear);         
+        $lastYear &&  $agenda->setLastYear($lastYear);         
+          
         return $agenda;
     }
     public function addNote(Agenda $agenda, int $day, int $month, string $note) : Agenda

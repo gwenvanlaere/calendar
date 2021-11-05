@@ -48,11 +48,6 @@ try {
 $firstDay = $agenda->getFirstDayOfWeek();
 $_SESSION['agenda'] = serialize($agenda);
 
-//$agenda = $agenda->showAgenda(true);
-echo '<pre>';
-print_r($agenda->showAgenda(true));
-echo '</pre>';
-
 !empty($errors)  && print_r('<pre style="color:red;font-weight:bold">' . $errors . '</pre>');
 
 //TODO selected year = <option selected></option>

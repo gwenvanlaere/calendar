@@ -13,6 +13,8 @@ class Agenda
     private Calendar $calendar;
     private array $agenda;
     private string $language;
+    private ?array $lastYear;
+    private ?array $nextYear;
     
     public function __construct(Calendar $calendar, string $language = null)
     {
@@ -63,22 +65,27 @@ class Agenda
     {
        return Calendar::$days[1][$this->language];
     }
-    public function showAgenda(bool $trailingDays = null) :  array
+    public function showAgenda(bool $trailingDays = null) /*: array*/
     { 
         $output = [];
         $agenda = $this->agenda;
+        
         foreach ($agenda as $monthNumber => $days) {                       
             $monthName = Calendar::$months[intval($monthNumber)][$this->language];
             
             //l> trailing days before                      
             if ($trailingDays) {
-                $previousMonth = $monthNumber === 1
-                    ? $this->calendar->getDecemberOfLastYear() /* last days of last year */
-                    : $agenda[$monthNumber - 1];
+                if ($monthNumber === 1) {  /* last days of last year */
+                    $previousMonth = isset($this->lastYear) /* last year record exists */
+                        ? $this->lastYear[12]
+                        : $this->calendar->getDecemberOfLastYear();
+                } else {
+                    $previousMonth = $agenda[$monthNumber - 1];
+                }                
                 $output[$monthName] = $this->getPrecedingDays($previousMonth, $monthNumber);
             }
             //l> -----------------------
-           
+                       
             foreach ($days as $day => $dayNumber) {
                 if (is_array($dayNumber)) {                    
                     $weekday = Calendar::$days[intval(key($dayNumber))][$this->language];
@@ -87,13 +94,17 @@ class Agenda
                     $weekday = Calendar::$days[intval($dayNumber)][$this->language];
                     $output[$monthName][$day] = [$weekday => []];
                 }
-            }
+            }            
             
             //l> trailing days after  
             if ($trailingDays) {
-                $nextMonth = $monthNumber === 12
-                ? $this->calendar->getJanuaryOfNextYear() /* first days of next year */
-                : $agenda[$monthNumber + 1];
+                if ($monthNumber === 12) {  /* first days of next year */
+                    $nextMonth = isset($this->nextYear) /* last year record exists */
+                        ? $this->nextYear[1]
+                        : $this->calendar->getJanuaryOfNextYear();
+                } else {
+                    $nextMonth = $agenda[$monthNumber + 1];
+                }                
                 $output[$monthName] += $this->getFollowingDays($nextMonth, $monthNumber);
             }
             //l> -----------------------
@@ -139,5 +150,13 @@ class Agenda
     public function setContent(array $content)
     {
        $this->agenda = $content;
+    }
+    public function setLastYear(array $year)
+    {
+        $this->lastYear = $year;
+    }
+    public function setNextYear(array $year)
+    {        
+        $this->nextYear = $year;
     }
 }
