@@ -15,7 +15,7 @@ echo '</pre>';
 </head>
 
 <body>
-    <h1><a href="<?php echo dirname($_SERVER['SCRIPT_NAME']);?>/Views/index.php">Link</a></h1>
+    <h1><a href="<?php echo dirname($_SERVER['SCRIPT_NAME']);?>/Views/index2.html">Link</a></h1>
 </body>
 
 </html>
