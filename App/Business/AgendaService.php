@@ -18,7 +18,7 @@ class AgendaService
             }
         }      
         $agenda = new Agenda($calendar, $language);
-        $content = $agenda->getContent();
+        $content = $agenda->getContent('');
         $year = $calendar->getYear();
         
         $storSrv = new StorageService();
@@ -28,37 +28,52 @@ class AgendaService
         if (!$file) {
             $file = $storSrv->makeFile(strval($year), $content);
         }
-        $agenda->setContent($file);
+        $agenda->setContent('', $file);
         
         //o> check for bounding years
         $nextYear = $storSrv->findFile(strval($year + 1));
         $lastYear = $storSrv->findFile(strval($year - 1)); 
-        $nextYear &&  $agenda->setNextYear($nextYear);         
-        $lastYear &&  $agenda->setLastYear($lastYear);         
+        $nextYear &&  $agenda->setContent('next', $nextYear);         
+        $lastYear &&  $agenda->setContent('last', $lastYear);         
           
         return $agenda;
     }
-    public function addNote(Agenda $agenda, int $day, int $month, string $note) : Agenda
-    {        
-        $year = strval($agenda->getYear());
-        $agenda->addNote($day, $month, $note);
-        $content = $agenda->getContent();
+    public function addNote(Agenda $agenda, int $year, int $day, int $month, string $note) : Agenda
+    {    
+        $agendaYear = $agenda->getYear();
+        $storSrv = new StorageService();
+        $label = '';
+        if ($agendaYear > $year) {
+            $label = 'last';
+        }     
+        if ($agendaYear < $year) {
+            $label = 'next';
+        }
+        $agenda->addNote($label, $day, $month, $note);
+        $content = $agenda->getContent($label);        
         
         $storSrv = new StorageService();
-        $file = $storSrv->makeFile($year, $content);        
-        $agenda->setContent($file);
+        $file = $storSrv->makeFile(strval($year), $content);        
+        $agenda->setContent($label, $file);        
+        //$agenda = $agenda->getContent('');
         
         return $agenda;
     }
-    public function removeNote(Agenda $agenda, int $day, int $month, string $timestamp) : Agenda
+    public function removeNote(Agenda $agenda, int $year, int $day, int $month, string $timestamp) : Agenda
     {        
-        $year = strval($agenda->getYear());
-        $agenda->removeNote($day, $month, $timestamp);
-        $content = $agenda->getContent();        
-        
+        $agendaYear = $agenda->getYear();
         $storSrv = new StorageService();
-        $file = $storSrv->makeFile($year, $content);        
-        $agenda->setContent($file);
+        $label = '';
+        if ($agendaYear > $year) {
+            $label = 'last';
+        }     
+        if ($agendaYear < $year) {
+            $label = 'next';
+        }
+        $agenda->removeNote($label, $day, $month, $timestamp);
+        $content = $agenda->getContent($label);
+        $file = $storSrv->makeFile(strval($year), $content);
+        $agenda->setContent($label, $file);           
         
         return $agenda;
     }

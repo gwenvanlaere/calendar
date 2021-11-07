@@ -19,43 +19,6 @@ variable modifier example of {ldelim}$Name|upper{rdelim}
 
 <b>{$Name|upper}</b>
 
-An example of a section loop:
-
-    {section name=outer
-    loop=$FirstName}
-        {if $smarty.section.outer.index is odd by 2}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {$smarty.section.outer.rownum} . {$FirstName[outer]} {$LastName[outer]}
-        {else}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {$smarty.section.outer.rownum} * {$FirstName[outer]} {$LastName[outer]}
-        {/if}
-        {sectionelse}
-        none
-    {/section}
-
-    An example of section looped key values:
-
-    {section name=sec1 loop=$contacts}
-                phone: {$contacts[sec1].phone}
-                <br>
-                    fax: {$contacts[sec1].fax}
-                <br>
-                    cell: {$contacts[sec1].cell}
-                <br>
-    {/section}
-    <p>
-
-        testing strip tags
-        {strip}
-             <table border=0>
-            <tr>
-                <td>
-                    <A HREF="{$SCRIPT_NAME}">
-                        <font color="red">This is a test </font>
-                    </A>
-                </td>
-            </tr>
-             </table>
-    {/strip}
 
 </PRE>
 
@@ -66,34 +29,36 @@ This is an example of the html_select_date function:
     {html_select_date start_year='-5' end_year='+5' field_order=YMD display_days=false display_months=false}
 </form>
 
-This is an example of the html_select_time function:
-<form action='/' method='post'>
-    {html_select_time field_separator=':'}
-</form>
-
-This is an example of the html_options function:
-
-<form>
-    <select name=states>
-        {html_options values=$option_values selected=$option_selected output=$option_output}
-    </select>
-</form>
 <article class="agenda">
     {foreach $agenda as $month}
         <section class="month">
-            <h2><label for="month-{$month@iteration}" style='font-weight:bold;'> {$month@key} </label></h2>
-            <input type="radio" id="month-{$month@iteration}" name="month">
+            {html_radios name='month' output=$month@key values=$month@iteration labels=false selected=$selected_month}
             <ul class="monthList">
                 {foreach $month as $day}
-                    <li class='day' data-month='{$month@iteration}' data-day='{$day@iteration}'>
+                    <li class='day' data-month='{$month@iteration}' data-day='{$day@key}'>
                         {foreach $day as $notes}
-                            {$day@key} +++++ {$notes@key}
-                            <ul>
-                                {foreach $notes as $note}
-                                    <li>{$note@key} => {$note}</li>
+                            <details>
+                                <summary {if !empty($notes)} class="modified" {/if}>{$day@key|regex_replace:"/[-+]/":" "}</summary>
+                                <ul>
+                                    <li class="dayName">
+                                        <h2>{$notes@key}</h2>
+                                    </li>
+                                    {foreach $notes as $note}
+                                        <li>
+                                            <p class="note">{$note}</p>
+                                            <time>{$note@key|date_format:'%e %b, %Y, %H:%M:%S'}</time>
+                                            <a
+                                                href='{$SCRIPT_NAME}?action=delete&d={urlencode($day@key)}&m={$month@iteration}&stamp={$note@key}'>delete</a>
+                                        </li>
+                                    {/foreach}
                                 {/foreach}
-                            {/foreach}
-                        </ul>
+                                <form action="{$SCRIPT_NAME}?action=add&d={urlencode($day@key)}&m={$month@iteration}"
+                                    method='post'>
+                                    <input type="submit" value="Add">
+                                    <input type='text' name='note'>
+                                </form>
+                            </ul>
+                        </details>
                     </li>
                 {/foreach}
             </ul>

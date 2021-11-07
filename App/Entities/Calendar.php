@@ -35,12 +35,9 @@ class Calendar
     private array $calendar;
     
     public function __construct(int $year = null)
-    {
-        //$language = $language ?? 'en';
-        $year = $year ?? intval(date("Y"));        
-        
-        $this->year = $year;        
-        //$this->language = $language;
+    {              
+        $year = $year ?? intval(date("Y"));
+        $this->year = $year; 
         $this->init();        
     }
     

@@ -13,32 +13,15 @@ $smarty->debugging = true;
 // $smarty->caching = true;
 $smarty->cache_lifetime = 120;
 $smarty->assign("Name", "Gwen Van Laere", true);
-$smarty->assign("FirstName", array("John", "Mary", "James", "Henry"));
-$smarty->assign("LastName", array("Doe", "Smith", "Johnson", "Case"));
-$smarty->assign(
-    "Class",
-    array(
-        array("A", "B", "C", "D"),
-        array("E", "F", "G", "H"),
-        array("I", "J", "K", "L"),
-        array("M", "N", "O", "P")
-    )
-);
-$smarty->assign(
-    "contacts",
-    array(
-        array("phone" => "1", "fax" => "2", "cell" => "3"),
-        array("phone" => "555-4444", "fax" => "555-3333", "cell" => "760-1234")
-    )
-);
+
+$selected_year = $agenda->getYear();
+$selected_month = $selected_year == date("Y") ? date("m") : 1;
 
 $smarty->assign('errors', $errors);
 $smarty->assign('daysInWeek', 8);
 $smarty->assign('firstDay', $firstDay);
 $smarty->assign('agenda', $agenda->showAgenda(true));
-$smarty->assign('selected_year',$agenda->getYear());
+$smarty->assign('selected_year', $selected_year);
+$smarty->assign('selected_month', $selected_month);
 
-$smarty->assign("option_values", array("NY", "NE", "KS", "IA", "OK", "TX"));
-$smarty->assign("option_output", array("New York", "Nebraska", "Kansas", "Iowa", "Oklahoma", "Texas"));
-$smarty->assign("option_selected", "NE");
 $smarty->display('index.tpl');

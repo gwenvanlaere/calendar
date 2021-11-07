@@ -13,45 +13,62 @@ class Agenda
     private Calendar $calendar;
     private array $agenda;
     private string $language;
-    private ?array $lastYear;
-    private ?array $nextYear;
+    private array $lastYear;
+    private array $nextYear;
     
     public function __construct(Calendar $calendar, string $language = null)
     {
         $this->calendar = $calendar;
         $this->language = $language ?? 'en';
-        $this->agenda = $calendar->show();            
+        $this->agenda = $calendar->show();
+        $last = new Calendar($this->getYear() - 1);
+        $next = new Calendar($this->getYear() + 1);
+        $this->lastYear = $last->show();         
+        $this->nextYear = $next->show();
     }    
-    public function addNote(int $day, int $month, string $note)
-    { 
-        if (!is_array($this->agenda[$month][$day])) {
-            $weekday = $this->agenda[$month][$day];                 
-            $this->agenda[$month][$day] = [$weekday => []];                  
+    public function addNote(string $label, int $day, int $month, string $note)
+    {         
+        $agenda = $this->getContent($label);
+        if (!is_array($agenda[$month][$day])) {
+            $weekday = $agenda[$month][$day];                 
+            $agenda[$month][$day] = [$weekday => []];                  
         }
-        $weekday = key($this->agenda[$month][$day]);
-        $this->agenda[$month][$day][$weekday][time()] = $note;
+        $weekday = key($agenda[$month][$day]);
+        $agenda[$month][$day][$weekday][time()] = $note;
+        $agenda = $this->setContent($label, $agenda);  
     }
-    public function removeNote(int $day, int $month, string $timestamp)
-    {        
-        if (!is_array($this->agenda[$month][$day])) {
+    public function removeNote(string $label, int $day, int $month, string $timestamp)
+    { 
+        $agenda = $this->getContent($label);
+       
+        if (!is_array($agenda[$month][$day])) {
             throw new NoNotesFoundForThisDayException();
-        }
-        $weekday = key($this->agenda[$month][$day]);
-        if (isset($this->agenda[$month][$day][$weekday][$timestamp])) {            
-            unset($this->agenda[$month][$day][$weekday][$timestamp]);
+        }        
+        $weekday = key($agenda[$month][$day]);
+        if (isset($agenda[$month][$day][$weekday][$timestamp])) {
+            unset($agenda[$month][$day][$weekday][$timestamp]);                     
         } else {
             throw new NoteDoesNotExistException();
         }
-        if (empty($this->agenda[$month][$day][$weekday])) {
-            $this->agenda[$month][$day] = $weekday;
+        
+        if (empty($agenda[$month][$day][$weekday])) {
+            $agenda[$month][$day] = $weekday;
         }        
+        
+        $agenda = $this->setContent($label, $agenda);   
     }   
 
     /* getters */
-    public function getContent() : array
-    {
+    public function getContent(string $label) : array
+    {        
+        if ($label === 'last') {
+            return $this->lastYear;
+        }
+        if ($label === 'next') {
+            return $this->nextYear;
+        }
        return $this->agenda;
-    }
+    }   
     
     public function getLanguage() : string
     {
@@ -75,13 +92,9 @@ class Agenda
             
             //l> trailing days before                      
             if ($trailingDays) {
-                if ($monthNumber === 1) {  /* last days of last year */
-                    $previousMonth = isset($this->lastYear) /* last year record exists */
-                        ? $this->lastYear[12]
-                        : $this->calendar->getDecemberOfLastYear();
-                } else {
-                    $previousMonth = $agenda[$monthNumber - 1];
-                }                
+                $previousMonth = $monthNumber === 1 
+                    ? $this->lastYear[12]
+                    : $agenda[$monthNumber - 1];                         
                 $output[$monthName] = $this->getPrecedingDays($previousMonth, $monthNumber);
             }
             //l> -----------------------
@@ -96,15 +109,11 @@ class Agenda
                 }
             }            
             
-            //l> trailing days after  
+            //l> trailing days after 
             if ($trailingDays) {
-                if ($monthNumber === 12) {  /* first days of next year */
-                    $nextMonth = isset($this->nextYear) /* last year record exists */
-                        ? $this->nextYear[1]
-                        : $this->calendar->getJanuaryOfNextYear();
-                } else {
-                    $nextMonth = $agenda[$monthNumber + 1];
-                }                
+                $nextMonth = $monthNumber === 12 
+                    ? $this->nextYear[1]
+                    : $agenda[$monthNumber + 1];                         
                 $output[$monthName] += $this->getFollowingDays($nextMonth, $monthNumber);
             }
             //l> -----------------------
@@ -147,9 +156,15 @@ class Agenda
     }
 
     /* setters */
-    public function setContent(array $content)
+    public function setContent(string $label, array $content)
     {
-       $this->agenda = $content;
+        if ($label === 'last') {
+            $this->lastYear = $content;
+        }elseif ($label === 'next') {
+            $this->nextYear = $content;
+        }else {
+            $this->agenda = $content;
+        }      
     }
     public function setLastYear(array $year)
     {

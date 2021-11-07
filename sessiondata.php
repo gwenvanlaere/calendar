@@ -22,6 +22,8 @@ $agenda;
 $calSrv = new CalendarService();
 $agdSrv = new AgendaService();
 
+
+
 /*********** AGENDA **********/
 if (isset($_SESSION['agenda']) && !isset($_POST['Date_Year'])) {
     $agenda = unserialize($_SESSION['agenda'], ['Agenda']);
@@ -36,15 +38,39 @@ if (isset($_SESSION['agenda']) && !isset($_POST['Date_Year'])) {
         $errors = $exHandler::$messages[$exHandler->getName()];
     }
 }
-
-try {
-    //$agdSrv->addNote($agenda, 2, 6, 'tis 2 juni iere');
-    //$agdSrv->addNote($agenda, 4, 11, 'and now for something completely different');
-    //$agdSrv->removeNote($agenda, 3, 11, '1636007331');
-} catch(Exception $ex) {
-    $exHandler = new ExceptionsHandler($ex);              
-    $errors = $exHandler::$messages[$exHandler->getName()];
+if(isset($_GET['action'])) {
+    $day = $_GET['d'];
+    $month = intval($_GET['m']);
+    $year = $agenda->getYear();       
+    /* next or previous month */
+    /* switch year if month is 1 or 12 */
+    if ($day[0] === '+') {
+        $day = explode('+', $day)[1];
+        $year = $month === 12 ? $year + 1 : $year; 
+        $month = $month === 12 ? 1 : $month + 1;
+    } elseif ($day[0] === '-') {
+        $day = explode('-', $day)[1];
+        $year = $month === 1 ? $year - 1 : $year;
+        $month = $month === 1 ? 12 : $month - 1;            
+    }
+    if (isset($_POST['note'])) {        
+        $note = htmlspecialchars($_POST['note']);
+        try {
+            $agenda = $agdSrv->addNote($agenda, $year, intval($day), $month, $note);        
+        } catch(Exception $ex) {
+            $exHandler = new ExceptionsHandler($ex);              
+            $errors = $exHandler::$messages[$exHandler->getName()];
+        }
+    } else {
+        try {
+            $agenda = $agdSrv->removeNote($agenda, $year, intval($day), $month, $_GET['stamp']);        
+        } catch(Exception $ex) {
+            $exHandler = new ExceptionsHandler($ex);              
+            $errors = $exHandler::$messages[$exHandler->getName()];
+        }
+    }
 }
+
 $firstDay = $agenda->getFirstDayOfWeek();
 $_SESSION['agenda'] = serialize($agenda);
 

@@ -22,10 +22,10 @@
 }
 
 /* Remove list styles (bullets/numbers) */
-ol,
+/*ol,
 ul {
     list-style: none;
-}
+}*/
 
 /* For images to not be able to exceed their container */
 img {
@@ -73,4 +73,11 @@ form {
 }
 select {
     background: white;
+}
+.dayName {
+    list-style: none;
+    color: white;
+}
+.modified {
+    background: greenyellow;
 }
